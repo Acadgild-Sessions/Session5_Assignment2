@@ -1,19 +1,26 @@
-import java.io.*;
 
-abstract interface Subject{	
-	abstract float avg(int a, int b, int c);
-	abstract void result();
+abstract class Student{
+	int Sregid; 
+	int Srollno; 
+	String Sname;
+	Student(int regid, int rollno, String name){
+		Sregid=regid; 
+		Srollno=rollno; 
+		Sname=name;
+	}	
 }
-class Student implements Subject{
+class Subject extends Student{	
+	Subject(int regid, int rollno, String name) {
+		super(regid, rollno, name);		
+	}
 	int mrk1,mrk2,mrk3,tot;
-	String name, std;
+	String std;
 	float avg;
 	
-	public Student(String n,String s,int a,int b,int c){
+	void Subject1(String s,int a,int b,int c){
 		mrk1=a;
 		mrk2=b;
 		mrk3=c;
-		name=n;
 		std=s;
 		tot=a+b+c;
 	}	
@@ -21,9 +28,11 @@ class Student implements Subject{
 		avg=(a+b+c)/3;		
 		return avg;		
 	}
-	public void result(){
+	public void Display(){
 		System.out.println("Student Result");
-		System.out.println("Name\t\t:\t"+name);
+		System.out.println("Name\t\t:\t"+Sname);
+		System.out.println("Roll No.\t:\t"+Srollno);
+		System.out.println("Register Id.\t:\t"+Sregid);
 		System.out.println("Standard\t:\t"+std);		
 		System.out.println("\nMarks in Subject");
 		System.out.println("Subject 1\t:\t"+mrk1);		
@@ -36,11 +45,13 @@ class Student implements Subject{
 }
 
 public class studResult{
-	public static void main(String args[]) throws IOException{
-		Student St;
-		St = new Student("Vivek", "VII", 65, 54, 72);	
-		St.result();
-		St = new Student("Lokesh", "VII", 86, 71, 52);
-		St.result();
+	public static void main(String args[]){
+		Subject St;
+		St = new Subject(151,5,"Lokesh");	
+		St.Subject1("VII", 65, 54, 72);
+		St.Display();
+		St = new Subject(161,6,"Vivek");
+		St.Subject1("VII", 86, 71, 52);
+		St.Display();
 	}
 }
